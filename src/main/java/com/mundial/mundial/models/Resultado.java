@@ -1,5 +1,6 @@
 package com.mundial.mundial.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ public class Resultado {
     private Integer id;
 
     @ManyToOne @Getter @Setter
+    @JsonIgnore
     @JoinColumn(name = "idpartido")
     private Partido partido;
 
@@ -34,11 +36,16 @@ public class Resultado {
     @Column(name = "estado")
     private String estado;
 
-    public Resultado(Partido partido, int marcador1, int marcador2, Usuarios usuarios, String estado) {
+    @Getter @Setter
+    @Column(name = "puntos")
+    private int puntos;
+
+    public Resultado(Partido partido, int marcador1, int marcador2, Usuarios usuarios, String estado, int puntos) {
         this.partido = partido;
         this.marcador1 = marcador1;
         this.marcador2 = marcador2;
         this.usuarios = usuarios;
         this.estado = estado;
+        this.puntos = puntos;
     }
 }

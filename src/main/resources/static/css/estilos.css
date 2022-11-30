@@ -30,7 +30,6 @@
 }
 .contenedor-t{
     background: linear-gradient(180deg, hsla(225, 69%, 62%, 1) 0%, rgb(21, 78, 193) 100%);
-    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;

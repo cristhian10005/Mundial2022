@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "partido")
@@ -32,15 +34,15 @@ public class Partido {
     @Column(name = "estado")
     private String estado;
 
-    @Getter @Setter
-    @Column(name = "puntos")
-    private int puntos;
 
-    public Partido(Date fecha, Desempeno equipo1, Desempeno equipo2, String estado, int puntos) {
+    @Getter @Setter
+    @OneToMany(mappedBy ="partido")
+    List<Resultado> resultados;
+
+    public Partido(Date fecha, Desempeno equipo1, Desempeno equipo2, String estado) {
         this.fecha = fecha;
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
         this.estado = estado;
-        this.puntos = puntos;
     }
 }

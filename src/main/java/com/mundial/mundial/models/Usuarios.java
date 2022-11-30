@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuarios {
+public class Usuarios implements Comparable<Usuarios>{
     @Id @Getter @Setter
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -31,6 +31,22 @@ public class Usuarios {
     @Column(name = "puntos")
     @Getter @Setter
     private int puntos;
-    
+
+    @Column(name = "rol")
+    @Getter @Setter
+    private String rol;
+
+    @Override
+    public int compareTo(Usuarios u) {
+
+        if (this.getPuntos()<u.getPuntos()) {
+
+            return 1;
+        }else if (this.getPuntos()>u.getPuntos()) {
+            return -1;
+        }else {
+            return 0;
+        }
+    }
 
 }

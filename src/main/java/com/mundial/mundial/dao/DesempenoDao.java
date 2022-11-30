@@ -10,7 +10,7 @@ import java.util.List;
 public interface DesempenoDao {
     List<Desempeno> getDesempeno();
     void asignarEquipos(Desempeno d, Desempeno d2);
-    List<Partido> getPartidos();
+    List<Partido> getPartidos(int id);
 
     List<Equipos> getEquipos();
 
@@ -19,4 +19,5 @@ public interface DesempenoDao {
     void registrarResultado(int m1, int m2, int idp, int idu);
 
     List<Resultado>resultados();
+    void  asignarPuntos(int id);
 }

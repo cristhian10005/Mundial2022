@@ -3,10 +3,7 @@ package com.mundial.mundial.controllers;
 import com.mundial.mundial.dao.DesempenoDao;
 import com.mundial.mundial.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,9 +12,9 @@ public class PartidosController {
     @Autowired
     DesempenoDao desempenoDao;
 
-    @RequestMapping(value = "api/prepartido")
-    public List<Partido> formPartidos(){
-        return desempenoDao.getPartidos();
+    @RequestMapping(value = "api/prepartido/{id}")
+    public List<Partido> formPartidos(@PathVariable int id){
+        return desempenoDao.getPartidos(id);
     }
 
     @RequestMapping(value = "api/equipos")
@@ -27,6 +24,7 @@ public class PartidosController {
 
     @RequestMapping(value = "api/resultados")
     public List<Resultado> resultados(){return  desempenoDao.resultados();}
+
 
     @RequestMapping(value = "api/asigEquipos", method = RequestMethod.POST)
     public void asignarEquipos(@RequestBody List<Equipos> lista){
@@ -47,6 +45,12 @@ public class PartidosController {
     public void reguistrarResultado(@RequestBody TempResultado resultado){
                 desempenoDao.registrarResultado(resultado.getMarcador1(),resultado.getMarcador2(),
                 resultado.getIdpartido(),resultado.getIdPersona());
+
+    }
+
+    @RequestMapping(value = "api/regResultado/{id}")
+    public void reguistrarResultadoAdmin(@PathVariable int id){
+        desempenoDao.asignarPuntos(id);
 
     }
 }

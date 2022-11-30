@@ -1,5 +1,4 @@
 window.onload = cargarEquipos;
-
 function getHeaders() {
     return {
         'Accept': 'application/json',
@@ -51,7 +50,7 @@ async function crearPartido() {
     
 
     if(!confirm("¿Seguro desea crear este partido?")) return;
-        request = await fetch('../api/regPartido', {
+       const request2 = await fetch('../api/regPartido', {
         method: 'GET',
         headers: getHeaders()
       });
