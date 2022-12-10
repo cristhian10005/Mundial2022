@@ -7,8 +7,8 @@ function getHeaders() {
   };
 }
 let rol = document.getElementById("rol").value;
-let urlLista = 'api/prepartido';
-let urlEnv = 'api/regResultado';
+let urlLista = '../api/prepartido';
+let urlEnv = '../api/regResultado';
 if (rol == 1) {
   urlLista = '../api/prepartido';
   urlEnv = '../api/regResultado';
@@ -28,6 +28,7 @@ async function cargarformPartidos() {
       + '<div class="col-md-12">'
       + '<label class="form-label">' + partidoList.equipo1.equipo.nombre + '</label>'
       + '<select id="equ-form1'+indiceIdPartido+'" class="form-select form-select-sm" aria-label=".form-select-sm example">'
+      + '<option value="0">0</option>'
       + '<option value="1">1</option>'
       + '<option value="2">2</option>'
       + '<option value="3">3</option>'
@@ -41,21 +42,24 @@ async function cargarformPartidos() {
       + '<div class="col-md-12">'
       + '<label " class="form-label">' + partidoList.equipo2.equipo.nombre + '</label>'
       + '<select id="equ-form2'+indiceIdPartido+'" class="form-select form-select-sm" aria-label=".form-select-sm example">'
+      + '<option value="0">0</option>'
       + '<option value="1">1</option>'
       + '<option value="2">2</option>'
       + '<option value="3">3</option>'
       + '<option value="4">4</option>'
       + '<option value="5">5</option>'
       + '<option value="6">6</option>'
-      + '<option value="7">7</option>'
+      + '<option value="7">7</option>'  
       + '<option value="8">8</option>'
       + '</select>'
       + '</div>'
       + '<div class="col-12">'
       + '<button type="submit" onclick="enviarMarcador(' + rol +','+ indiceIdPartido+ ')" class="btn btn-primary boton">Registrar</button>'
-      + '</div>'
-      + '<a href="#"></a>'
-      + '</form>';
+      + '</div>';
+      if(rol ==1){
+        equipo+= '<button type="submit" onclick="inhabilitar('+indiceIdPartido+')">Cerrar partido</button>';
+      }
+    equipo += '</form>';
     indiceIdPartido++;  
     listado += equipo;
   }
@@ -87,4 +91,14 @@ async function enviarMarcador(rol, indiceIdPartido) {
       headers: getHeaders()
     });
   }
+}
+
+async function inhabilitar(indiceIdPartido){
+  event.preventDefault();
+  let idpartido = 'idpartido'+indiceIdPartido;
+  let id = document.getElementById(idpartido).value;
+  const request = await fetch("../api/inhabilitar/"+id, {
+    method: 'GET',
+    headers: getHeaders(),
+  });
 }

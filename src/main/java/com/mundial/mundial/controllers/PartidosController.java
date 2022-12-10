@@ -23,7 +23,9 @@ public class PartidosController {
     }
 
     @RequestMapping(value = "api/resultados")
-    public List<Resultado> resultados(){return  desempenoDao.resultados();}
+    public List<Partido> resultados(){
+        return  desempenoDao.resultados();
+    }
 
 
     @RequestMapping(value = "api/asigEquipos", method = RequestMethod.POST)
@@ -45,12 +47,16 @@ public class PartidosController {
     public void reguistrarResultado(@RequestBody TempResultado resultado){
                 desempenoDao.registrarResultado(resultado.getMarcador1(),resultado.getMarcador2(),
                 resultado.getIdpartido(),resultado.getIdPersona());
-
     }
 
     @RequestMapping(value = "api/regResultado/{id}")
     public void reguistrarResultadoAdmin(@PathVariable int id){
         desempenoDao.asignarPuntos(id);
 
+    }
+
+    @RequestMapping(value = "api/inhabilitar/{id}")
+    public void inhabilitar(@PathVariable int id){
+        desempenoDao.inhabilitar(id);
     }
 }

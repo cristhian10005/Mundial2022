@@ -3,8 +3,7 @@ package com.mundial.mundial.controllers;
 import com.mundial.mundial.dao.UsuarioDao;
 import com.mundial.mundial.models.Usuarios;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +15,7 @@ public class UsuariosController {
     @Autowired
     UsuarioDao usuarioDao;
 
+
     @RequestMapping(value = "api/tabalResultados")
     public List<Usuarios> prueba(){
         List<Usuarios>lista = new ArrayList<>();
@@ -25,5 +25,14 @@ public class UsuariosController {
         }
         Collections.sort(lista);
         return lista;
+    }
+
+    @RequestMapping(value = "api/registro", method = RequestMethod.POST)
+    public void registrar(){
+
+    }
+    @RequestMapping(value = "logueo", method = RequestMethod.POST)
+    public void Loguear(){
+        //userDetailsService.loadUserByUsername(usuario.getEmail());
     }
 }

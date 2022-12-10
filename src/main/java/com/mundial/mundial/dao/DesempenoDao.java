@@ -18,6 +18,8 @@ public interface DesempenoDao {
 
     void registrarResultado(int m1, int m2, int idp, int idu);
 
-    List<Resultado>resultados();
+    List<Partido>resultados();
     void  asignarPuntos(int id);
+
+    void inhabilitar(int id);
 }

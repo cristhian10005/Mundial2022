@@ -31,6 +31,7 @@ public class Partido {
     @JoinColumn(name = "idequ2")
     private Desempeno equipo2;
 
+    @Getter @Setter
     @Column(name = "estado")
     private String estado;
 
